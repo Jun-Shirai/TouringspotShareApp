@@ -13,6 +13,8 @@
 		09D5157525E8281700DCE048 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09D5157325E8281700DCE048 /* Main.storyboard */; };
 		09D5157725E8281700DCE048 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09D5157625E8281700DCE048 /* Assets.xcassets */; };
 		09D5157A25E8281700DCE048 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09D5157825E8281700DCE048 /* LaunchScreen.storyboard */; };
+		09D5158925E83FF300DCE048 /* GoogleService-Info (1).plist in Resources */ = {isa = PBXBuildFile; fileRef = 09D5158825E83FF300DCE048 /* GoogleService-Info (1).plist */; };
+		D9A7606BF316F6D90100B945 /* Pods_TouringspotShareApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34B79CE0F651A9CD02F16A3 /* Pods_TouringspotShareApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,10 @@
 		09D5157625E8281700DCE048 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09D5157925E8281700DCE048 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		09D5157B25E8281700DCE048 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09D5158825E83FF300DCE048 /* GoogleService-Info (1).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info (1).plist"; sourceTree = "<group>"; };
+		15F3ED126F35DE776B064CD8 /* Pods-TouringspotShareApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouringspotShareApp.release.xcconfig"; path = "Target Support Files/Pods-TouringspotShareApp/Pods-TouringspotShareApp.release.xcconfig"; sourceTree = "<group>"; };
+		372062C199524DE217AB60CE /* Pods-TouringspotShareApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouringspotShareApp.debug.xcconfig"; path = "Target Support Files/Pods-TouringspotShareApp/Pods-TouringspotShareApp.debug.xcconfig"; sourceTree = "<group>"; };
+		C34B79CE0F651A9CD02F16A3 /* Pods_TouringspotShareApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouringspotShareApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9A7606BF316F6D90100B945 /* Pods_TouringspotShareApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +49,8 @@
 			children = (
 				09D5156C25E8281700DCE048 /* TouringspotShareApp */,
 				09D5156B25E8281700DCE048 /* Products */,
+				8FF7B277F73AF7F65C401440 /* Pods */,
+				2B182C0CA07EB3F7B70616A7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,8 +72,26 @@
 				09D5157625E8281700DCE048 /* Assets.xcassets */,
 				09D5157825E8281700DCE048 /* LaunchScreen.storyboard */,
 				09D5157B25E8281700DCE048 /* Info.plist */,
+				09D5158825E83FF300DCE048 /* GoogleService-Info (1).plist */,
 			);
 			path = TouringspotShareApp;
+			sourceTree = "<group>";
+		};
+		2B182C0CA07EB3F7B70616A7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C34B79CE0F651A9CD02F16A3 /* Pods_TouringspotShareApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8FF7B277F73AF7F65C401440 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				372062C199524DE217AB60CE /* Pods-TouringspotShareApp.debug.xcconfig */,
+				15F3ED126F35DE776B064CD8 /* Pods-TouringspotShareApp.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 09D5157E25E8281700DCE048 /* Build configuration list for PBXNativeTarget "TouringspotShareApp" */;
 			buildPhases = (
+				BFAAC5146ABD52C059983947 /* [CP] Check Pods Manifest.lock */,
 				09D5156625E8281600DCE048 /* Sources */,
 				09D5156725E8281600DCE048 /* Frameworks */,
 				09D5156825E8281600DCE048 /* Resources */,
+				29E4DA737E712D0D535BBED4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -127,10 +156,53 @@
 				09D5157A25E8281700DCE048 /* LaunchScreen.storyboard in Resources */,
 				09D5157725E8281700DCE048 /* Assets.xcassets in Resources */,
 				09D5157525E8281700DCE048 /* Main.storyboard in Resources */,
+				09D5158925E83FF300DCE048 /* GoogleService-Info (1).plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		29E4DA737E712D0D535BBED4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TouringspotShareApp/Pods-TouringspotShareApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TouringspotShareApp/Pods-TouringspotShareApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TouringspotShareApp/Pods-TouringspotShareApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BFAAC5146ABD52C059983947 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TouringspotShareApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		09D5156625E8281600DCE048 /* Sources */ = {
@@ -283,6 +355,7 @@
 		};
 		09D5157F25E8281700DCE048 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 372062C199524DE217AB60CE /* Pods-TouringspotShareApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -296,12 +369,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.techacademy.jun.shirai.TouringspotShareApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		09D5158025E8281700DCE048 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 15F3ED126F35DE776B064CD8 /* Pods-TouringspotShareApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -315,7 +389,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.techacademy.jun.shirai.TouringspotShareApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
