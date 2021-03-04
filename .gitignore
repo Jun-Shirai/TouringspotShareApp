@@ -1,3 +1,4 @@
 Pods/*
 TouringspotShareApp.xcworkspace
-GoogleService-Info(1).plist
+GoogleService-Info.plist
+GoogleMapsAPI-Info.plist

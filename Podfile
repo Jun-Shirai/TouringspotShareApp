@@ -12,4 +12,7 @@ target 'TouringspotShareApp' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
   pod 'FirebaseUI/Storage'
+  pod 'SVProgressHUD','2.2.5'
+  pod 'CLImageEditor/AllTools','0.2.4'
+  pod 'GoogleMaps'
 end

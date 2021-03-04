@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "無料の設定歯車アイコン.png",
+      "filename" : "like_none.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "like_none@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "like_none@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
