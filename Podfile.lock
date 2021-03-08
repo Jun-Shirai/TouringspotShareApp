@@ -300,6 +300,22 @@ PODS:
   - FirebaseUI/Storage (10.0.2):
     - Firebase/Storage
     - SDWebImage (~> 5.6)
+  - Google-Maps-iOS-Utils (3.6.0):
+    - Google-Maps-iOS-Utils/Clustering (= 3.6.0)
+    - Google-Maps-iOS-Utils/Geometry (= 3.6.0)
+    - Google-Maps-iOS-Utils/Heatmap (= 3.6.0)
+    - Google-Maps-iOS-Utils/QuadTree (= 3.6.0)
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Clustering (3.6.0):
+    - Google-Maps-iOS-Utils/QuadTree
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Geometry (3.6.0):
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Heatmap (3.6.0):
+    - Google-Maps-iOS-Utils/QuadTree
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/QuadTree (3.6.0):
+    - GoogleMaps
   - GoogleAppMeasurement (7.5.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
     - GoogleUtilities/MethodSwizzler (~> 7.0)
@@ -377,6 +393,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Storage
   - FirebaseUI/Storage
+  - Google-Maps-iOS-Utils
   - GoogleMaps
   - SVProgressHUD (= 2.2.5)
 
@@ -394,6 +411,7 @@ SPEC REPOS:
     - FirebaseInstallations
     - FirebaseStorage
     - FirebaseUI
+    - Google-Maps-iOS-Utils
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleMaps
@@ -420,6 +438,7 @@ SPEC CHECKSUMS:
   FirebaseInstallations: 6e4e77396559bc2ae0504823837ed737b1c7e47f
   FirebaseStorage: 9cbdff7bdcdc8289c8efc20945fc91c1066d0b43
   FirebaseUI: 59db3d833773f985550897d54ceb811ba37fb9a5
+  Google-Maps-iOS-Utils: bb96a3e6580ae633bf53ded8d9f466cd3ab8baf8
   GoogleAppMeasurement: 65a1071e5f52f63ab03d0a4d814a54fd762d885a
   GoogleDataTransport: 1024b1a4dfbd7a0e92cb20d7e0a6f1fb66b449a4
   GoogleMaps: 008e2c80e38605b56b560e8deb73d4194ff30bef
@@ -433,6 +452,6 @@ SPEC CHECKSUMS:
   SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 8dca881e4b560bf444bd52e5e271601f1fb28e04
+PODFILE CHECKSUM: 77b761fb14f23dbd4f0932c442f3efd22deeffc7
 
 COCOAPODS: 1.10.1

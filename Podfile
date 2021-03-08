@@ -15,4 +15,5 @@ target 'TouringspotShareApp' do
   pod 'SVProgressHUD','2.2.5'
   pod 'CLImageEditor/AllTools','0.2.4'
   pod 'GoogleMaps'
+  pod 'Google-Maps-iOS-Utils'
 end

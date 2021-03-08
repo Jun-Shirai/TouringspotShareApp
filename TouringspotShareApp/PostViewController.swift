@@ -51,12 +51,14 @@ class PostViewController: UIViewController {
                 return
             }
             //FireStoreに投稿データを保存する
+            let latiDouble: Double? = Double(self.latitudeTextField.text!)
+            let longiDouble: Double? = Double(self.longitudeTextField.text!)
             let name = Auth.auth().currentUser?.displayName
             let postDic = [
                 "name": name!,
                 "caption": self.textField.text!,
-                "latitude": self.latitudeTextField.text!,  //緯度
-                "longitude": self.longitudeTextField.text!,  //経度
+                "latitude": latiDouble!,  //緯度
+                "longitude": longiDouble!,  //経度
                 "date": FieldValue.serverTimestamp(),
             ] as [String: Any]
             postRef.setData(postDic)
@@ -80,6 +82,7 @@ class PostViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         imageView.image = image  //画像を表示
+        
     }
     
     //textField以外の部分をタッチしてキーボードを閉じる

@@ -7,6 +7,7 @@
 
 import UIKit
 import GoogleMaps
+import GoogleMapsUtils
 import Firebase
 
 class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
@@ -18,6 +19,7 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
     var listener: ListenerRegistration?  //Firestoreのリスナー
     var lati: CLLocationDegrees!  //マーカー表示用
     var longi: CLLocationDegrees!  //マーカー表示用
+    var clusterManager: GMUClusterManager!  //クラスター化のため
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +63,18 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
         locationManager.desiredAccuracy = kCLLocationAccuracyBest  //取得制度の設定
         locationManager.startUpdatingLocation()  //位置情報の取得開始
         
+        //クラスター化のため
+        let iconGenerator = GMUDefaultClusterIconGenerator()
+        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
+        let renderer = GMUDefaultClusterRenderer(mapView: mapView,clusterIconGenerator: iconGenerator)
+        clusterManager = GMUClusterManager(map: mapView, algorithm: algorithm,renderer: renderer)
+        
+        clusterManager.setMapDelegate(self)
+        clusterManager.add(markers)
+        
+        clusterManager.cluster()
+
+        
         self.view.addSubview(mapView)
         self.view.bringSubviewToFront(mapView)
         
@@ -77,34 +91,32 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
     }
     
     //PostDataクラスから投稿データの緯度・経度を引っ張って、マーカーを表示させる
-    func makeMarker(postData: PostData) {  //->[GMSMarker]
-        //PostDataクラスの緯度・経度をString→Doubleに変換
-        let posLati: String = postData.latitude!
-        let posLongi: String = postData.longitude!
-        lati = Double(posLati)
-        longi = Double(posLongi)
+    func makeMarker(postData: PostData) {
+        if postData.latitude == nil || postData.longitude == nil {
+            return
+        }else {
+        //PostDataクラスの緯度・経度
+        lati = postData.latitude!
+        longi = postData.longitude!
         
         //地図上に投稿データの数だけマーカーを表示させる
         let marker: GMSMarker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: lati, longitude: longi)
+        marker.userData = postData  //マーカーに投稿データ情報をのせておく
         marker.map = mapView  //マップ上に表示
         markers.append(marker)  //新たなマーカーを配列に追加
-//        return markers
+        }
     }
     
     //マーカーをタップしたら該当の投稿データ閲覧画面にモーダル遷移（ShowViewController）
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        //タップされたマーカーの特定をして、postDataとして遷移先にデータを渡す
-        //マーカーの緯度・経度をDouble→Stringに変換する必要あり？
-        marker.position = CLLocationCoordinate2D(latitude: lati, longitude: longi)
-        let point = marker.position
-        let indexPath = mapView.index(ofAccessibilityElement: point)
-        let postData = postArray[indexPath]
+        
+//        marker.position = CLLocationCoordinate2D(latitude: lati, longitude: longi)
+        let postData = marker.userData as! PostData
         
         let showViewController = storyboard!.instantiateViewController(withIdentifier: "Show") as! ShowViewController
         showViewController.postData = postData
         present(showViewController, animated: true, completion: nil)
-        
         
         return false  //吹き出しの代わりに画面遷移と値渡し
     }
@@ -113,7 +125,6 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
     
     
     //画面内の表示マーカー数が多いとき、まとめて表示するマーカーを生成（見やすくするため）
-    
     
     //投稿日から一年したら投稿データが削除される処理
     

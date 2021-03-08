@@ -120,7 +120,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="軽度（位置情報を選択）" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g9y-Fw-GcD">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="経度（位置情報を選択）" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g9y-Fw-GcD">
                                 <rect key="frame" x="10" y="377" width="394" height="26.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -261,7 +261,10 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="ngW-Qc-1sI"/>
                                 </constraints>
-                                <state key="normal" title="戻る" backgroundImage="btn"/>
+                                <state key="normal" title="閉じる" backgroundImage="btn"/>
+                                <connections>
+                                    <action selector="returnButton:" destination="HpP-t4-jZY" eventType="touchUpInside" id="gn5-tD-WF0"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uga-RU-rIT">
                                 <rect key="frame" x="110" y="487.5" width="294" height="21"/>
@@ -443,7 +446,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zxf-Qa-ItQ">
                                 <rect key="frame" x="57" y="232" width="300" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="c2E-rE-788"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="c2E-rE-788"/>
                                 </constraints>
                                 <state key="normal" title="ログイン" backgroundImage="btn"/>
                                 <connections>
@@ -453,7 +456,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7h-Lc-xVQ">
                                 <rect key="frame" x="57" y="282" width="300" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="IeF-ZB-emz"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="IeF-ZB-emz"/>
                                 </constraints>
                                 <state key="normal" title="アカウント作成" backgroundImage="btn"/>
                                 <connections>

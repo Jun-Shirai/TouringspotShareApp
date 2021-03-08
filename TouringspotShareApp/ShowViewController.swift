@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseUI  //Firebaseから画像を持ってくるためのプロパティやメソッドを使用するためにインポート
 
 class ShowViewController: UIViewController {
@@ -24,9 +25,10 @@ class ShowViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        setPostData(postData)  //投稿データを反映させる
     }
     
-    //画像はFirebaseより、画像以外の投稿データはPostDataから引っ張ってくる
+    //画像はFirebaseより、画像以外の投稿データはPostDataから引っ張ってきくる
     func setPostData(_ postData: PostData) {
         
         //画像の表示
@@ -55,6 +57,7 @@ class ShowViewController: UIViewController {
         
         //いいねボタンの表示
         if postData.isLiked {
+            //いいねしてるときの表示
             let buttonImage = UIImage(named: "like_exist")
             self.likeButton.setImage(buttonImage, for: .normal)
         }else {
@@ -65,8 +68,31 @@ class ShowViewController: UIViewController {
     
     //いいねボタンがタップされたときの処理
     @IBAction func likeTapButton(_ sender: Any) {
+        print("いいねおされたよ")
+        //いいねをIDとして定義
+        if let myid = Auth.auth().currentUser?.uid {
+            //Firebaseにて更新する（updateDataメソッド）ときにつかうために用意
+            var updataValue: FieldValue
+            //いいねしてる・してないの場合分け
+            if postData.isLiked {
+                //してるときにタップしたら、いいねを取り除く
+                updataValue = FieldValue.arrayRemove([myid])
+            }else {
+                //してないときにタップしたらいいねを追加
+                updataValue = FieldValue.arrayUnion([myid])
+            }
+            //タップ処理したことをFirebaseにて更新・保存処理
+            let postRef = Firestore.firestore().collection(Const.PostPath).document(postData.id)
+            postRef.updateData(["likes" : updataValue])
+        }
         
     }
+    
+    //閉じるボタン
+    @IBAction func returnButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     
     /*
     // MARK: - Navigation

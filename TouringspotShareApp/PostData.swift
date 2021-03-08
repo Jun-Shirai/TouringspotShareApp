@@ -12,8 +12,8 @@ class PostData: NSObject {
 var id: String  //投稿者ID、保存のために作成　＊String?にならない理由としては、下記イニシャライザにて id != nil（nilは絶対に入らない）の初期化宣言をしているため。
     var name: String?  //投稿者名　＊nilが入る可能性も考えて?をつけている
     var caption: String?  //キャプション：投稿者名と投稿者からのコメント　＊nilが入る可能性も考えて?をつけている
-    var latitude: String?
-    var longitude: String?
+    var latitude: Double?
+    var longitude: Double?
     var date: Date?  //日時　　＊nilが入る可能性も考えて?をつけている
     var likes: [String] = []  //複数のいいねした人のID（文字列）を扱うため、配列型にする
     var isLiked: Bool = false  //自分がいいねしたかどうかのフラグ
@@ -25,8 +25,8 @@ var id: String  //投稿者ID、保存のために作成　＊String?になら�
         let postDic = document.data()
         self.name = postDic["name"] as? String
         self.caption = postDic["caption"] as? String
-        self.latitude = postDic["latitude"] as? String
-        self.longitude = postDic["longitude"] as? String
+        self.latitude = postDic["latitude"] as? Double
+        self.longitude = postDic["longitude"] as? Double
         let timestamp = postDic["date"] as? Timestamp
         self.date = timestamp?.dateValue()
         
