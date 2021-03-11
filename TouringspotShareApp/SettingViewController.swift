@@ -21,6 +21,7 @@ class SettingViewController: UIViewController {
             //
             if displayName.isEmpty {
                 SVProgressHUD.showError(withStatus: "表示名を入力して下さい")
+                SVProgressHUD.dismiss(withDelay: 1)
                 return
             }
             
@@ -41,6 +42,7 @@ class SettingViewController: UIViewController {
                     
                     //HUDで完了を知らせる
                     SVProgressHUD.showSuccess(withStatus: "表示名を変更しました")
+                    SVProgressHUD.dismiss(withDelay: 1)
                     
                 }
             }
@@ -75,6 +77,10 @@ class SettingViewController: UIViewController {
         if let user = user {
             displayNameTextField.text = user.displayName
         }
+        
+        //テキストの設定
+        displayNameTextField.textColor = UIColor.black  //テキストの色
+        displayNameTextField.backgroundColor = UIColor.white  //テキスト背景色
         
     }
     

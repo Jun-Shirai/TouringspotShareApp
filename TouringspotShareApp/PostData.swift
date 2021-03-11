@@ -20,9 +20,9 @@ var id: String  //投稿者ID、保存のために作成　＊String?になら�
     
     
     //イニシャライザ　＊上記プロパティのままだとデフォルト（初期）値がなく、変数の使い方がわからないため
-    init(document: QueryDocumentSnapshot) {
+    init(document: DocumentSnapshot) {  //ShowViewControllerにてデータ更新する際に扱うquerySnapshot（最新データが含まれている）がDocumentSnapshot型のため、QueryDocumentSnapshot→DocumentSnapshotに変更
         self.id = document.documentID
-        let postDic = document.data()
+        let postDic = document.data()!  //DocumentSnapshotへの変更に伴い、「！」を追記
         self.name = postDic["name"] as? String
         self.caption = postDic["caption"] as? String
         self.latitude = postDic["latitude"] as? Double

@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        sleep(2)  //スプラッシュ画面の表示時間を2秒に設定
         FirebaseApp.configure()
         GMSServices.provideAPIKey("AIzaSyBxLhkplATI6_XFxOmpgem9ow51VQQq56E")  //取得したAPIキーをセット
         return true

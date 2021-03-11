@@ -13,6 +13,7 @@
 		09314F5E25E874D800397D24 /* GoogleMapsAPI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09314F5D25E874D800397D24 /* GoogleMapsAPI-Info.plist */; };
 		093E6B4225EDFB31000A7603 /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093E6B4125EDFB31000A7603 /* PostData.swift */; };
 		0948D6FA25EF76CC0071798A /* ShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0948D6F925EF76CC0071798A /* ShowViewController.swift */; };
+		0952CB5625F9D44F00059E4C /* スプラッシュ用画像.001.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0952CB5525F9D44F00059E4C /* スプラッシュ用画像.001.jpeg */; };
 		095B171A25EBD2FA00E1B795 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095B171925EBD2F900E1B795 /* Const.swift */; };
 		09950EB125E8A54500D788EA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09950EB025E8A54500D788EA /* HomeViewController.swift */; };
 		09950EB425E8A56C00D788EA /* ImageSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09950EB325E8A56C00D788EA /* ImageSelectViewController.swift */; };
@@ -35,6 +36,7 @@
 		09314F5D25E874D800397D24 /* GoogleMapsAPI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleMapsAPI-Info.plist"; sourceTree = "<group>"; };
 		093E6B4125EDFB31000A7603 /* PostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
 		0948D6F925EF76CC0071798A /* ShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowViewController.swift; sourceTree = "<group>"; };
+		0952CB5525F9D44F00059E4C /* スプラッシュ用画像.001.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "スプラッシュ用画像.001.jpeg"; path = "スプラッシュ用画像/スプラッシュ用画像.001.jpeg"; sourceTree = SOURCE_ROOT; };
 		095B171925EBD2F900E1B795 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		09950EB025E8A54500D788EA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		09950EB325E8A56C00D788EA /* ImageSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				09D5157325E8281700DCE048 /* Main.storyboard */,
 				09D5157625E8281700DCE048 /* Assets.xcassets */,
 				09255C0725E9D09D00451B1D /* bike.png */,
+				0952CB5525F9D44F00059E4C /* スプラッシュ用画像.001.jpeg */,
 				09D5157825E8281700DCE048 /* LaunchScreen.storyboard */,
 				09D5157B25E8281700DCE048 /* Info.plist */,
 				09D5158825E83FF300DCE048 /* GoogleService-Info.plist */,
@@ -189,6 +192,7 @@
 			files = (
 				09D5157A25E8281700DCE048 /* LaunchScreen.storyboard in Resources */,
 				09D5157725E8281700DCE048 /* Assets.xcassets in Resources */,
+				0952CB5625F9D44F00059E4C /* スプラッシュ用画像.001.jpeg in Resources */,
 				09255C0825E9D09D00451B1D /* bike.png in Resources */,
 				09D5157525E8281700DCE048 /* Main.storyboard in Resources */,
 				09D5158925E83FF300DCE048 /* GoogleService-Info.plist in Resources */,

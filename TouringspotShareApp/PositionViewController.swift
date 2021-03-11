@@ -12,6 +12,7 @@ class PositionViewController: UIViewController,CLLocationManagerDelegate,GMSMapV
     
     var mapView = GMSMapView()  //マップを表示するため
     var locationManager = CLLocationManager()  //位置情報取得のため
+    var marker: GMSMarker?  //最初はマーカーがない状態（nil）だから、オプショナル型で宣言しておこう。var marker = GMSMarker()だと初期値で宣言してしまうから画面上にマーカーはないけど、「コード上ではマーカーが存在する（緯度経度０）」ことになってしまう。
     @IBOutlet weak var tableView: UITableView!  //マップ表示をする場所を指定するために
     
 
@@ -49,10 +50,18 @@ class PositionViewController: UIViewController,CLLocationManagerDelegate,GMSMapV
     
     //選んだ位置を長押ししたときに呼び出すメソッド
     func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
-        
-        //タップした場所にマーカー設置
-        let marker = GMSMarker(position: coordinate)
-        marker.map = mapView
+        //マーカー既に存在してるか否かで場合分けして、マーカー表示を一つだけにする。
+        if self.marker == nil {
+            self.marker = GMSMarker(position: coordinate)
+            print("マーカーないからつくるよ")
+        }else {
+            self.marker?.map = nil
+            print("マーカー消すよ")
+            self.marker = GMSMarker(position: coordinate)
+            print("マーカーつくるよ")
+        }
+        //マーカー表示
+        self.marker?.map = mapView
         
         //座標の取得→文字列に変換する
         let latStr = coordinate.latitude.description

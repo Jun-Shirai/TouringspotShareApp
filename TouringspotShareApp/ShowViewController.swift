@@ -20,12 +20,32 @@ class ShowViewController: UIViewController {
     //タップされたマーカー（位置情報）から投稿データをうけとる変数の設定
     var postData: PostData!
     
+    var listener: ListenerRegistration?  //Firestoreのリスナー
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
-        setPostData(postData)  //投稿データを反映させる
+        //Firebase内の投稿データを取得。該当の投稿データを取得するため、「.document(postData.id)」で指定
+        let postsRef = Firestore.firestore().collection(Const.PostPath).document(postData.id)
+        //addSnapshotListenerで新しいデータが追加更新される旅に監視し、以下の処理を施す。
+        listener = postsRef.addSnapshotListener() {(querySnapshot,error)in
+            
+            guard let document = querySnapshot else {
+                print("データ取得に失敗しました。\(error!)")
+                return
+            }
+            guard let data = document.data() else {
+                print("データがありません。")
+                return
+            }
+            print("データが更新されました。\(data)")
+            //↓let postDataではなくself.postDataにしよう。let~で宣言すると、ローカル変数のため、一度処理（この場合は更新）されると消えることになる。それだといいねボタンを２回目にタップした際、Firebaseに更新はされているが、画面表示の更新はされなくなり、（ShowViewControllerを）開き直さないと更新されない状態になってしまう。
+            self.postData = PostData(document: querySnapshot! as DocumentSnapshot)  //最新データをPostDataクラスのイニシャライザにあたはめて更新。
+            self.setPostData(self.postData)  //投稿データを画面に反映させる
+        }
+        
+        
     }
     
     //画像はFirebaseより、画像以外の投稿データはPostDataから引っ張ってきくる

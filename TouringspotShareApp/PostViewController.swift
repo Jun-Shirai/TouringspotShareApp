@@ -25,6 +25,17 @@ class PostViewController: UIViewController {
     //投稿ボタンがタップされたとき
     @IBAction func postButton(_ sender: Any) {
         
+        //位置情報の選択がない時は、アラート通知してこのメソッドから抜け出す。
+        let latiText = latitudeTextField.text!
+        let longiText = longitudeTextField.text!
+        if latiText.isEmpty || longiText.isEmpty {
+            print("エラー：位置情報がないよ")
+            SVProgressHUD.showError(withStatus: "位置情報を選択して下さい")
+            SVProgressHUD.dismiss(withDelay: 1)
+            
+            return
+        }
+        
         //画像をjpeg形式に変換する
         let imageData = image.jpegData(compressionQuality: 0.75)
         
@@ -65,6 +76,7 @@ class PostViewController: UIViewController {
             
             //HUDで投稿完了を表示する
             SVProgressHUD.showSuccess(withStatus: "投稿しました")
+            SVProgressHUD.dismiss(withDelay: 1)
             
             //投稿処理が完了したので先頭画面に戻る
             UIApplication.shared.windows.first{ $0.isKeyWindow }?.rootViewController?.dismiss(animated: true, completion: nil)
@@ -82,6 +94,21 @@ class PostViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         imageView.image = image  //画像を表示
+        
+        //各テキストの設定
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 14),
+            .foregroundColor: UIColor.lightGray
+        ]
+        textField.attributedPlaceholder = NSAttributedString(string: "キャプション", attributes: attributes)  //プレイスホルダー
+        textField.textColor = UIColor.black  //テキストの色
+        textField.backgroundColor = UIColor.white  //テキスト背景色
+        latitudeTextField.attributedPlaceholder = NSAttributedString(string: "緯度（位置情報を選択）", attributes: attributes)
+        latitudeTextField.textColor = UIColor.black
+        latitudeTextField.backgroundColor = UIColor.white
+        longitudeTextField.attributedPlaceholder = NSAttributedString(string: "経度（位置情報を選択）", attributes: attributes)
+        longitudeTextField.textColor = UIColor.black
+        longitudeTextField.backgroundColor = UIColor.white
         
     }
     

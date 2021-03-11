@@ -19,7 +19,7 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
     var listener: ListenerRegistration?  //Firestoreのリスナー
     var lati: CLLocationDegrees!  //マーカー表示用
     var longi: CLLocationDegrees!  //マーカー表示用
-    var clusterManager: GMUClusterManager!  //クラスター化のため
+//    var clusterManager: GMUClusterManager!  //クラスター化のため→一旦設定しない
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,25 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
         mapView.settings.myLocationButton = true  //右下のボタン、押すと自身の位置まで画面が戻る
         mapView.isMyLocationEnabled = true  //位置情報取得のため記述
         mapView.delegate = self
+
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()  //位置情報の取得許可「アプリ使用中のみ」の確認をとるダイアログ表示の生成
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest  //取得制度の設定
+        locationManager.startUpdatingLocation()  //位置情報の取得開始
         
+//        //クラスター化のため→一旦設定しない
+//        let iconGenerator = GMUDefaultClusterIconGenerator()
+//        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
+//        let renderer = GMUDefaultClusterRenderer(mapView: mapView,clusterIconGenerator: iconGenerator)
+//        clusterManager = GMUClusterManager(map: mapView, algorithm: algorithm,renderer: renderer)
+//
+//        clusterManager.setMapDelegate(self)  //クラスター化をマップに実装
+//        clusterManager.cluster()  //クラスター実行
+//
+        self.view.addSubview(mapView)
+        self.view.bringSubviewToFront(mapView)
+        
+        //投稿データの更新を元にマップに最新の状態でマーカー表示
         //リスナーで使用してFirebase内の投稿データの更新を監視して、全ての投稿データ（マーカー）を地図上に反映させる処理を行いたいが、記述方法がわからない
         //ログイン済みかどうかを確認
         if Auth.auth().currentUser != nil {
@@ -54,29 +72,9 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
                 for element in self.postArray {
                     self.makeMarker(postData: element)
                 }
-
+//                self.clusterManager.add(self.markers)  //更新後のマーカーにクラスター化を実装するため、マーカーの値を渡す。ここ以外で記述するとmarkersの中身は空の状態なので実装して反映されない。→一旦設定しない
             }
         }
-
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()  //位置情報の取得許可「アプリ使用中のみ」の確認をとるダイアログ表示の生成
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest  //取得制度の設定
-        locationManager.startUpdatingLocation()  //位置情報の取得開始
-        
-        //クラスター化のため
-        let iconGenerator = GMUDefaultClusterIconGenerator()
-        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
-        let renderer = GMUDefaultClusterRenderer(mapView: mapView,clusterIconGenerator: iconGenerator)
-        clusterManager = GMUClusterManager(map: mapView, algorithm: algorithm,renderer: renderer)
-        
-        clusterManager.setMapDelegate(self)
-        clusterManager.add(markers)
-        
-        clusterManager.cluster()
-
-        
-        self.view.addSubview(mapView)
-        self.view.bringSubviewToFront(mapView)
         
     }
     
@@ -92,6 +90,7 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
     
     //PostDataクラスから投稿データの緯度・経度を引っ張って、マーカーを表示させる
     func makeMarker(postData: PostData) {
+        //投稿データがあるか否かで場合分け
         if postData.latitude == nil || postData.longitude == nil {
             return
         }else {
@@ -103,7 +102,7 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
         let marker: GMSMarker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: lati, longitude: longi)
         marker.userData = postData  //マーカーに投稿データ情報をのせておく
-        marker.map = mapView  //マップ上に表示
+        marker.map = mapView  //self.clusterManager.add(self.markers) でマーカー全てをクラスターに値を渡し、マップ上でクラスター実装しているため、記述しなくてもマーカーは表示される。→クラスター化は一旦設定しない
         markers.append(marker)  //新たなマーカーを配列に追加
         }
     }
@@ -111,7 +110,6 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
     //マーカーをタップしたら該当の投稿データ閲覧画面にモーダル遷移（ShowViewController）
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         
-//        marker.position = CLLocationCoordinate2D(latitude: lati, longitude: longi)
         let postData = marker.userData as! PostData
         
         let showViewController = storyboard!.instantiateViewController(withIdentifier: "Show") as! ShowViewController
@@ -122,11 +120,15 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
     }
     
     //画面表示領域のみマーカーを表示（データ処理が重くなるのを軽減）
-    
-    
-    //画面内の表示マーカー数が多いとき、まとめて表示するマーカーを生成（見やすくするため）
-    
-    //投稿日から一年したら投稿データが削除される処理
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+        for marker in markers {
+            if mapView.projection.contains(marker.position) {
+                marker.map = mapView
+            }else {
+                marker.map = nil
+            }
+        }
+    }
     
     
     /*

@@ -112,6 +112,22 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        //各テキストの設定
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 14),
+            .foregroundColor: UIColor.lightGray
+        ]
+        mailAddressTextField.attributedPlaceholder = NSAttributedString(string: "メールアドレス", attributes: attributes)  //プレイスホルダー
+        mailAddressTextField.textColor = UIColor.black  //テキストの色
+        mailAddressTextField.backgroundColor = UIColor.white  //テキスト背景色
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "パスワード６文字以上", attributes: attributes)
+        passwordTextField.textColor = UIColor.black
+        passwordTextField.backgroundColor = UIColor.white
+        displayNameTextField.attributedPlaceholder = NSAttributedString(string: "アカウント作成時は表示名を入力", attributes: attributes)
+        displayNameTextField.textColor = UIColor.black
+        displayNameTextField.backgroundColor = UIColor.white
+        
     }
     
 
