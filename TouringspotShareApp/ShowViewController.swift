@@ -113,6 +113,8 @@ class ShowViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    //投稿データの削除機能。ログインユーザー名と投稿者名が同じ時に削除できるよう場合分けで記述。
+    
     
     /*
     // MARK: - Navigation

@@ -24,6 +24,7 @@ class LoginViewController: UIViewController {
             if address.isEmpty || password.isEmpty {
                 
                 SVProgressHUD.showError(withStatus: "必要項目を入力して下さい")
+                SVProgressHUD.dismiss(withDelay: 1)
                 return
             }
             
@@ -61,6 +62,7 @@ class LoginViewController: UIViewController {
                 print("DEBUG_PRINT: 何かが空文字です。")
                 
                 SVProgressHUD.showError(withStatus: "必要項目を入力して下さい")
+                SVProgressHUD.dismiss(withDelay: 1)
                 return
             }
             

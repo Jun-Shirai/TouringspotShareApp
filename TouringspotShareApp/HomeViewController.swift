@@ -7,7 +7,6 @@
 
 import UIKit
 import GoogleMaps
-import GoogleMapsUtils
 import Firebase
 
 class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
@@ -19,7 +18,6 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
     var listener: ListenerRegistration?  //Firestoreのリスナー
     var lati: CLLocationDegrees!  //マーカー表示用
     var longi: CLLocationDegrees!  //マーカー表示用
-//    var clusterManager: GMUClusterManager!  //クラスター化のため→一旦設定しない
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,20 +35,16 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
         locationManager.desiredAccuracy = kCLLocationAccuracyBest  //取得制度の設定
         locationManager.startUpdatingLocation()  //位置情報の取得開始
         
-//        //クラスター化のため→一旦設定しない
-//        let iconGenerator = GMUDefaultClusterIconGenerator()
-//        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
-//        let renderer = GMUDefaultClusterRenderer(mapView: mapView,clusterIconGenerator: iconGenerator)
-//        clusterManager = GMUClusterManager(map: mapView, algorithm: algorithm,renderer: renderer)
-//
-//        clusterManager.setMapDelegate(self)  //クラスター化をマップに実装
-//        clusterManager.cluster()  //クラスター実行
-//
         self.view.addSubview(mapView)
         self.view.bringSubviewToFront(mapView)
         
+    }
+    //他の画面から戻ってきても最新のデータを反映・更新している状態にする。＊viewDidloadだとログイン画面からきたとき最新のデータが反映されていない状況になるため。また稀に投稿後でも反映されていないときがあるため。
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("DEBUG_PRINT: viewWillAppear")
+        
         //投稿データの更新を元にマップに最新の状態でマーカー表示
-        //リスナーで使用してFirebase内の投稿データの更新を監視して、全ての投稿データ（マーカー）を地図上に反映させる処理を行いたいが、記述方法がわからない
         //ログイン済みかどうかを確認
         if Auth.auth().currentUser != nil {
 
@@ -72,11 +66,18 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
                 for element in self.postArray {
                     self.makeMarker(postData: element)
                 }
-//                self.clusterManager.add(self.markers)  //更新後のマーカーにクラスター化を実装するため、マーカーの値を渡す。ここ以外で記述するとmarkersの中身は空の状態なので実装して反映されない。→一旦設定しない
+
             }
         }
         
     }
+    
+    //ホーム画面を閉じる時
+    override func viewWillDisappear(_ animated: Bool) {
+        //listenerを削除して監視を停止する
+        listener?.remove()
+    }
+    
     
     //現在地が更新されたら呼び出す→アプリ起動時に現在地を初期表示とするために処理
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

@@ -15,11 +15,15 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.0.2</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>7</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>画像投稿及び編集のため、アプリがカメラの使用許可を求めてます。</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>写真投稿時に撮影場所を特定しやすいように現在地の表示をするため、アプリが位置情報の使用許可を求めてます。</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -60,9 +64,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>アプリが画像投稿及び編集のため、カメラの使用許可を求めてます。</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>アプリが現在地を表示するため、位置情報の使用許可を求めてます。</string>
+	<key>CFBundleDisplayName</key>
+	<string>Tosphos（トースフォース）</string>
 </dict>
 </plist>
