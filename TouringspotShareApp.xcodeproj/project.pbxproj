@@ -9,17 +9,23 @@
 /* Begin PBXBuildFile section */
 		09255C0825E9D09D00451B1D /* bike.png in Resources */ = {isa = PBXBuildFile; fileRef = 09255C0725E9D09D00451B1D /* bike.png */; };
 		09255C0B25E9D2CF00451B1D /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09255C0A25E9D2CF00451B1D /* PostViewController.swift */; };
+		0928F2C12610669200F6C3F8 /* RePrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0928F2C02610669200F6C3F8 /* RePrivacyViewController.swift */; };
 		092B40ED25EDAFA7000BFC2C /* PositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092B40EC25EDAFA7000BFC2C /* PositionViewController.swift */; };
 		09314F5E25E874D800397D24 /* GoogleMapsAPI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09314F5D25E874D800397D24 /* GoogleMapsAPI-Info.plist */; };
+		093C2040260CBACD00760F34 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093C203F260CBACD00760F34 /* TermsViewController.swift */; };
+		093C2043260CBECE00760F34 /* AgreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093C2042260CBECE00760F34 /* AgreeViewController.swift */; };
+		093C2046260CBF2F00760F34 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093C2045260CBF2F00760F34 /* PrivacyViewController.swift */; };
 		093E6B4225EDFB31000A7603 /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093E6B4125EDFB31000A7603 /* PostData.swift */; };
 		0948D6FA25EF76CC0071798A /* ShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0948D6F925EF76CC0071798A /* ShowViewController.swift */; };
 		0952CB5625F9D44F00059E4C /* スプラッシュ用画像.001.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0952CB5525F9D44F00059E4C /* スプラッシュ用画像.001.jpeg */; };
 		095B171A25EBD2FA00E1B795 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095B171925EBD2F900E1B795 /* Const.swift */; };
+		096D2E8226103F5300E3D511 /* ReTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096D2E8126103F5300E3D511 /* ReTermsViewController.swift */; };
 		09950EB125E8A54500D788EA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09950EB025E8A54500D788EA /* HomeViewController.swift */; };
 		09950EB425E8A56C00D788EA /* ImageSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09950EB325E8A56C00D788EA /* ImageSelectViewController.swift */; };
 		09950EB725E8A57F00D788EA /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09950EB625E8A57F00D788EA /* SettingViewController.swift */; };
 		09950EBB25E8AC9900D788EA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09950EBA25E8AC9900D788EA /* TabBarController.swift */; };
 		09950EBF25E8B01B00D788EA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09950EBE25E8B01B00D788EA /* LoginViewController.swift */; };
+		09B1004F2613310E008D6CE3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B1004E2613310E008D6CE3 /* MessageUI.framework */; };
 		09D5156E25E8281700DCE048 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D5156D25E8281700DCE048 /* AppDelegate.swift */; };
 		09D5157025E8281700DCE048 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D5156F25E8281700DCE048 /* SceneDelegate.swift */; };
 		09D5157525E8281700DCE048 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09D5157325E8281700DCE048 /* Main.storyboard */; };
@@ -32,17 +38,23 @@
 /* Begin PBXFileReference section */
 		09255C0725E9D09D00451B1D /* bike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bike.png; path = ../../bike.png; sourceTree = "<group>"; };
 		09255C0A25E9D2CF00451B1D /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		0928F2C02610669200F6C3F8 /* RePrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RePrivacyViewController.swift; sourceTree = "<group>"; };
 		092B40EC25EDAFA7000BFC2C /* PositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionViewController.swift; sourceTree = "<group>"; };
 		09314F5D25E874D800397D24 /* GoogleMapsAPI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleMapsAPI-Info.plist"; sourceTree = "<group>"; };
+		093C203F260CBACD00760F34 /* TermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
+		093C2042260CBECE00760F34 /* AgreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreeViewController.swift; sourceTree = "<group>"; };
+		093C2045260CBF2F00760F34 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		093E6B4125EDFB31000A7603 /* PostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
 		0948D6F925EF76CC0071798A /* ShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowViewController.swift; sourceTree = "<group>"; };
 		0952CB5525F9D44F00059E4C /* スプラッシュ用画像.001.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "スプラッシュ用画像.001.jpeg"; path = "スプラッシュ用画像/スプラッシュ用画像.001.jpeg"; sourceTree = SOURCE_ROOT; };
 		095B171925EBD2F900E1B795 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		096D2E8126103F5300E3D511 /* ReTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReTermsViewController.swift; sourceTree = "<group>"; };
 		09950EB025E8A54500D788EA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		09950EB325E8A56C00D788EA /* ImageSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectViewController.swift; sourceTree = "<group>"; };
 		09950EB625E8A57F00D788EA /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		09950EBA25E8AC9900D788EA /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		09950EBE25E8B01B00D788EA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		09B1004E2613310E008D6CE3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		09D5156A25E8281700DCE048 /* TouringspotShareApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouringspotShareApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09D5156D25E8281700DCE048 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09D5156F25E8281700DCE048 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09B1004F2613310E008D6CE3 /* MessageUI.framework in Frameworks */,
 				D9A7606BF316F6D90100B945 /* Pods_TouringspotShareApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,12 +108,17 @@
 				093E6B4125EDFB31000A7603 /* PostData.swift */,
 				09950EBA25E8AC9900D788EA /* TabBarController.swift */,
 				09950EBE25E8B01B00D788EA /* LoginViewController.swift */,
+				093C2042260CBECE00760F34 /* AgreeViewController.swift */,
+				093C2045260CBF2F00760F34 /* PrivacyViewController.swift */,
+				093C203F260CBACD00760F34 /* TermsViewController.swift */,
 				09950EB025E8A54500D788EA /* HomeViewController.swift */,
 				0948D6F925EF76CC0071798A /* ShowViewController.swift */,
 				09950EB325E8A56C00D788EA /* ImageSelectViewController.swift */,
 				09255C0A25E9D2CF00451B1D /* PostViewController.swift */,
 				092B40EC25EDAFA7000BFC2C /* PositionViewController.swift */,
 				09950EB625E8A57F00D788EA /* SettingViewController.swift */,
+				096D2E8126103F5300E3D511 /* ReTermsViewController.swift */,
+				0928F2C02610669200F6C3F8 /* RePrivacyViewController.swift */,
 				09D5157325E8281700DCE048 /* Main.storyboard */,
 				09D5157625E8281700DCE048 /* Assets.xcassets */,
 				09255C0725E9D09D00451B1D /* bike.png */,
@@ -116,6 +134,7 @@
 		2B182C0CA07EB3F7B70616A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				09B1004E2613310E008D6CE3 /* MessageUI.framework */,
 				C34B79CE0F651A9CD02F16A3 /* Pods_TouringspotShareApp.framework */,
 			);
 			name = Frameworks;
@@ -267,9 +286,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				09255C0B25E9D2CF00451B1D /* PostViewController.swift in Sources */,
+				093C2043260CBECE00760F34 /* AgreeViewController.swift in Sources */,
+				093C2046260CBF2F00760F34 /* PrivacyViewController.swift in Sources */,
 				09950EBF25E8B01B00D788EA /* LoginViewController.swift in Sources */,
+				0928F2C12610669200F6C3F8 /* RePrivacyViewController.swift in Sources */,
 				09D5156E25E8281700DCE048 /* AppDelegate.swift in Sources */,
+				093C2040260CBACD00760F34 /* TermsViewController.swift in Sources */,
 				09D5157025E8281700DCE048 /* SceneDelegate.swift in Sources */,
+				096D2E8226103F5300E3D511 /* ReTermsViewController.swift in Sources */,
 				09950EB425E8A56C00D788EA /* ImageSelectViewController.swift in Sources */,
 				09950EBB25E8AC9900D788EA /* TabBarController.swift in Sources */,
 				09950EB125E8A54500D788EA /* HomeViewController.swift in Sources */,

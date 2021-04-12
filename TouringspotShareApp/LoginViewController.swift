@@ -100,8 +100,8 @@ class LoginViewController: UIViewController {
                         //HUDを消す
                         SVProgressHUD.dismiss()
                         
-                        //画面を閉じてタブ画面に戻る
-                        self.dismiss(animated: true, completion: nil)
+                        //利用規約同意画面に遷移
+                        self.performSegue(withIdentifier: "toAgree", sender: self)
                     }
                     
                 }

@@ -44,14 +44,27 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
         super.viewWillAppear(animated)
         print("DEBUG_PRINT: viewWillAppear")
         
-        //投稿データの更新を元にマップに最新の状態でマーカー表示
+        //ShowViewControllerで投稿削除時に格納したキー（id）と一致するidを削除する
+        if let delMarker: String = UserDefaults.standard.value(forKey: "delMarker") as? String {
+            //for文でmarkers配列から一つずつ一致するもの探していく
+            for marker in markers {
+                let data = marker.userData as! PostData
+                if (data.id == delMarker) {
+                    print("hit: delete marker")
+                    marker.map = nil
+                }
+            }
+            
+        }
+        
+        //投稿データの更新をもとにマップに最新の状態でマーカー表示
         //ログイン済みかどうかを確認
         if Auth.auth().currentUser != nil {
-
+            
             //listenerを登録して投稿データの更新を監視する
-            let postsRef = Firestore.firestore().collection(Const.PostPath).order(by: "date", descending: true)
+            let postRef = Firestore.firestore().collection(Const.PostPath).order(by: "date", descending: true)
             //addSnapshotListenerメソッドがpostrefで取得する投稿データを監視し、投稿データが追加される・更新される度にクロージャ内の処理が呼び出される
-            listener = postsRef.addSnapshotListener() {(querySnapshot,error) in  //querySnapshotに最新の投稿データが入っている。
+            listener = postRef.addSnapshotListener() {(querySnapshot,error) in  //querySnapshotに最新の投稿データが入っている。
                 if let error = error {
                     print("DEBUG_PRINT: snapshotの取得に失敗しました。 \(error)")
                     return
@@ -62,9 +75,11 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
                     let postData = PostData(document: document)
                     return postData
                 }
+                
                 //makeMarkerメソッドを使用して複数ある投稿データを一つずつマップ上にマーカーを表示させる
                 for element in self.postArray {
                     self.makeMarker(postData: element)
+                    
                 }
 
             }
@@ -91,10 +106,12 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
     
     //PostDataクラスから投稿データの緯度・経度を引っ張って、マーカーを表示させる
     func makeMarker(postData: PostData) {
-        //投稿データがあるか否かで場合分け
+        //投稿データがあるか否かで場合分け＊↓この場合分けがないと起動したホーム画面で止まってしまう。
         if postData.latitude == nil || postData.longitude == nil {
+            //ないならこのメソッドの処理はしなくていいから出よう
             return
         }else {
+            //投稿がある場合
         //PostDataクラスの緯度・経度
         lati = postData.latitude!
         longi = postData.longitude!
@@ -103,33 +120,33 @@ class HomeViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewD
         let marker: GMSMarker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: lati, longitude: longi)
         marker.userData = postData  //マーカーに投稿データ情報をのせておく
-        marker.map = mapView  //self.clusterManager.add(self.markers) でマーカー全てをクラスターに値を渡し、マップ上でクラスター実装しているため、記述しなくてもマーカーは表示される。→クラスター化は一旦設定しない
-        markers.append(marker)  //新たなマーカーを配列に追加
+        marker.map = mapView  //マップ上に表示
+        markers.append(marker)  //新たなマーカーとしてを配列に追加
         }
     }
     
     //マーカーをタップしたら該当の投稿データ閲覧画面にモーダル遷移（ShowViewController）
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        
+        //投稿情報を載せたマーカーを遷移するときはPostDataとして渡す
         let postData = marker.userData as! PostData
-        
+        //遷移先を取得して、情報を渡して遷移処理
         let showViewController = storyboard!.instantiateViewController(withIdentifier: "Show") as! ShowViewController
         showViewController.postData = postData
         present(showViewController, animated: true, completion: nil)
         
-        return false  //吹き出しの代わりに画面遷移と値渡し
+        return false  //吹き出しの代わりに画面遷移と値渡しするからfalse
     }
     
-    //画面表示領域のみマーカーを表示（データ処理が重くなるのを軽減）
-    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-        for marker in markers {
-            if mapView.projection.contains(marker.position) {
-                marker.map = mapView
-            }else {
-                marker.map = nil
-            }
-        }
-    }
+//    //画面表示領域のみマーカーを表示（データ処理が重くなるのを軽減）→削除したマーカーが出現するのを防ぐため一旦機能停止
+//    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+//        for marker in markers {
+//            if mapView.projection.contains(marker.position) {
+//                marker.map = mapView
+//            }else {
+//                marker.map = nil
+//            }
+//        }
+//    }
     
     
     /*

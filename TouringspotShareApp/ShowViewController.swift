@@ -7,9 +7,12 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
 import FirebaseUI  //Firebaseから画像を持ってくるためのプロパティやメソッドを使用するためにインポート
+import GoogleMaps  //投稿削除した時にマーカーも削除するために
+import MessageUI  //メール送信による通報機能の追加
 
-class ShowViewController: UIViewController {
+class ShowViewController: UIViewController,MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
@@ -22,14 +25,15 @@ class ShowViewController: UIViewController {
     
     var listener: ListenerRegistration?  //Firestoreのリスナー
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         //Firebase内の投稿データを取得。該当の投稿データを取得するため、「.document(postData.id)」で指定
-        let postsRef = Firestore.firestore().collection(Const.PostPath).document(postData.id)
+        let postRef = Firestore.firestore().collection(Const.PostPath).document(postData.id)
         //addSnapshotListenerで新しいデータが追加更新される旅に監視し、以下の処理を施す。
-        listener = postsRef.addSnapshotListener() {(querySnapshot,error)in
+        listener = postRef.addSnapshotListener() {(querySnapshot,error)in
             
             guard let document = querySnapshot else {
                 print("データ取得に失敗しました。\(error!)")
@@ -114,7 +118,69 @@ class ShowViewController: UIViewController {
     }
     
     //投稿データの削除機能。ログインユーザー名と投稿者名が同じ時に削除できるよう場合分けで記述。
+    @IBAction func deleteButton(_ sender: Any) {
+        let user = Auth.auth().currentUser
+        //投稿者名と現在ログインしているユーザー名が一致していない場合
+        if postData.name != user?.displayName {
+            SVProgressHUD.showError(withStatus: "この投稿者ではないので削除できません。")
+            SVProgressHUD.dismiss(withDelay: 1)
+            
+        }else {
+            
+            //一致している場合
+            //削除する投稿データのidに名称をつけキーとしてUserDefaultsに一旦格納＊ホーム画面でマーカー削除処理として使うため
+            UserDefaults.standard.setValue(postData.id, forKey: "delMarker")
+            //postData.idで投稿データを特定・取得して
+            let postRef = Firestore.firestore().collection(Const.PostPath).document(postData.id)
+            //ドキュメントの削除
+            postRef.delete() { err in
+                if let err = err {
+                    print("削除ボタン：エラー発生\(err)")
+                }else {
+                    print("削除しました")
+                    SVProgressHUD.showSuccess(withStatus: "投稿を削除しました。")
+                    SVProgressHUD.dismiss(withDelay: 1)
+                    
+                }
+            }
+            //画像の削除
+            let imageRef = Storage.storage().reference().child(Const.ImagePath).child(postRef.documentID + ".jpg")
+            imageRef.delete(completion: nil)
+            
+            //画面をとじて一つ前のホーム画面に戻る
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
     
+    
+    //タップすることでメール送信画面へ遷移し、メール送信機能を実装
+    @IBAction func sendMailButton(_ sender: Any) {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self  //デリゲートを自分に指定
+            mail.setToRecipients(["second_id_h240407@yahoo.co.jp"])  //宛先指定
+            mail.setSubject("投稿内容の通報")  //件名
+            mail.setMessageBody("いつもご利用いただき誠にありがとうございます。\n\n通報理由の記載をお願いします。\n\n■通報理由：\n\nまた通報した投稿内容を確認しますので、下記項目の記載をお願いします。\n\n■投稿場所（都道府県名や市区町村など）：\n■投稿者名：", isHTML: false)  //本文FMの指定
+            present(mail, animated: true, completion: nil)  //遷移処理
+        }else {
+            print("画面開けない")
+        }
+    }
+    //メール画面内のボタンタップ時処理
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        switch result {
+        case .cancelled:
+            print("キャンセル")
+        case.saved:
+            print("下書き保存")
+        case.sent:
+            print("送信成功")
+        default:
+            print("送信失敗")
+        }
+        //画面を閉じる
+        controller.dismiss(animated: true, completion: nil)
+    }
     
     /*
     // MARK: - Navigation

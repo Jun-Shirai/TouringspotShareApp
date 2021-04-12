@@ -11,44 +11,8 @@ import SVProgressHUD
 
 class SettingViewController: UIViewController {
     
-    @IBOutlet weak var imageView: UIImageView!  //バイクアイコン
-    @IBOutlet weak var displayNameTextField: UITextField!
-    
-    //アカウント名変更ボタンがタップされたときに呼び出すメソッド
-    @IBAction func changeButton(_ sender: Any) {
-        if let displayName = displayNameTextField.text {
-            
-            //
-            if displayName.isEmpty {
-                SVProgressHUD.showError(withStatus: "表示名を入力して下さい")
-                SVProgressHUD.dismiss(withDelay: 1)
-                return
-            }
-            
-            //
-            let user = Auth.auth().currentUser
-            
-            if let user = user {
-                let changeReqest = user.createProfileChangeRequest()
-                changeReqest.displayName = displayName
-                changeReqest.commitChanges {error in
-                    if let error = error {
-                        
-                        SVProgressHUD.showError(withStatus: "表示名の変更に失敗しました。")
-                        print("DEBUG_PRINT: " + error.localizedDescription)
-                        return
-                    }
-                    print("DEBBUG_PRINT: [displayName = \(user.displayName!)]の設定に成功しました。")
-                    
-                    //HUDで完了を知らせる
-                    SVProgressHUD.showSuccess(withStatus: "表示名を変更しました")
-                    SVProgressHUD.dismiss(withDelay: 1)
-                    
-                }
-            }
-        }
-        //キーボードを閉じる
-        self.view.endEditing(true)
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
     
     //ログアウトボタンがタップされたときに呼び出すメソッド
@@ -64,27 +28,15 @@ class SettingViewController: UIViewController {
         tabBarController?.selectedIndex = 0
     }
     
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        //バイクアイコンを追加
-        let image = UIImage(named: "bike")
-        imageView.image = image
-
-        //この設定画面を開く度に現在ログインしているアカウント名を取得してTextFieldに反映する（を更新する）
-        let user = Auth.auth().currentUser
-        if let user = user {
-            displayNameTextField.text = user.displayName
-        }
-        
-        //テキストの設定
-        displayNameTextField.textColor = UIColor.black  //テキストの色
-        displayNameTextField.backgroundColor = UIColor.white  //テキスト背景色
-        
+    //利用規約画面から戻る処理
+    @IBAction func retermsButton(_ sender: UIStoryboardSegue) {
     }
     
-
+    //プライバシーポリシー画面から戻る処理
+    @IBAction func reprivacyButton(_ sender: UIStoryboardSegue) {
+    }
+    
+    
     /*
     // MARK: - Navigation
 
